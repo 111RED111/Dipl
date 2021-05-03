@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Diplom111.Game
 {
     //Создание игры
-    class ClassGame
+    class ClassGame //11
     {
         private PlayerObject Player;
         private Point MousePosition;
