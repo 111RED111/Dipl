@@ -113,6 +113,10 @@ namespace Diplom111
             StopGame.Enabled = false;
         }
 
-
+        // сохранение ключей
+        private void Save_Click(object sender, EventArgs e)
+        {
+            FileWrite.Zapis();
+        }
     }
 }

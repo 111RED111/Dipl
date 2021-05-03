@@ -10,7 +10,7 @@ using System.Windows.Forms;
 namespace Diplom111.Game
 {
     //Создание игры
-    class ClassGame //11
+    class ClassGame 
     {
         private PlayerObject Player;
         private Point MousePosition;
@@ -24,7 +24,7 @@ namespace Diplom111.Game
         private Thread GameThread; // игровой поток
         private bool StopGame; // игра остановлена? 
 
-        private static int DlinaKey; 
+        public static int DlinaKey; 
         public static int NujKey;
 
 

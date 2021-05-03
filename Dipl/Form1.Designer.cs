@@ -40,6 +40,7 @@ namespace Diplom111
             this.KolKey = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.NujnoKey = new System.Windows.Forms.TextBox();
+            this.Save = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -58,7 +59,7 @@ namespace Diplom111
             // 
             // StartRecord
             // 
-            this.StartRecord.Location = new System.Drawing.Point(30, 32);
+            this.StartRecord.Location = new System.Drawing.Point(12, 28);
             this.StartRecord.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.StartRecord.Name = "StartRecord";
             this.StartRecord.Size = new System.Drawing.Size(122, 46);
@@ -70,7 +71,7 @@ namespace Diplom111
             // StopRecord
             // 
             this.StopRecord.Enabled = false;
-            this.StopRecord.Location = new System.Drawing.Point(179, 31);
+            this.StopRecord.Location = new System.Drawing.Point(140, 28);
             this.StopRecord.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.StopRecord.Name = "StopRecord";
             this.StopRecord.Size = new System.Drawing.Size(122, 46);
@@ -81,7 +82,7 @@ namespace Diplom111
             // 
             // Convert
             // 
-            this.Convert.Location = new System.Drawing.Point(487, 32);
+            this.Convert.Location = new System.Drawing.Point(396, 28);
             this.Convert.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Convert.Name = "Convert";
             this.Convert.Size = new System.Drawing.Size(122, 46);
@@ -93,7 +94,7 @@ namespace Diplom111
             // StartGame
             // 
             this.StartGame.Enabled = false;
-            this.StartGame.Location = new System.Drawing.Point(334, 32);
+            this.StartGame.Location = new System.Drawing.Point(268, 28);
             this.StartGame.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.StartGame.Name = "StartGame";
             this.StartGame.Size = new System.Drawing.Size(122, 46);
@@ -129,7 +130,7 @@ namespace Diplom111
             // StopGame
             // 
             this.StopGame.Enabled = false;
-            this.StopGame.Location = new System.Drawing.Point(636, 32);
+            this.StopGame.Location = new System.Drawing.Point(524, 28);
             this.StopGame.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.StopGame.Name = "StopGame";
             this.StopGame.Size = new System.Drawing.Size(116, 46);
@@ -167,11 +168,22 @@ namespace Diplom111
             this.NujnoKey.TabIndex = 10;
             this.NujnoKey.Text = "100";
             // 
+            // Save
+            // 
+            this.Save.Location = new System.Drawing.Point(646, 28);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(116, 46);
+            this.Save.TabIndex = 11;
+            this.Save.Text = "Сохранить";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1330, 619);
+            this.Controls.Add(this.Save);
             this.Controls.Add(this.NujnoKey);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.KolKey);
@@ -204,6 +216,7 @@ namespace Diplom111
         private System.Windows.Forms.Label KolKey;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox NujnoKey;
+        private System.Windows.Forms.Button Save;
     }
 }
 

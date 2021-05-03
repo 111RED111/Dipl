@@ -24,6 +24,12 @@ namespace Diplom111
             if (Pool.GetKolKey() < Math.Min(ClassGame.NujKey, 2000))
             {
                 general_pool.AddLast(key); // добавление ключа в пул
+
+                //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                byte[] byteposled = new byte[8]; // массив байт, для переделывания из массива битов в массив байтов, для всех параметров (byteposled ключ в виде байтов)
+                key.CopyTo(byteposled, 0); // заполнение массива
+                System.Diagnostics.Debug.WriteLine("вывод key");
+                System.Diagnostics.Debug.WriteLine(Encoding.ASCII.GetString(byteposled));
             }  
             
             if (kol != null) // вывод кол-ва ключей
@@ -46,6 +52,10 @@ namespace Diplom111
         public static void SetLabel(Label kolvo) // даём ссылку на место, где писать кол-во ключей
         {
             Pool.kol = kolvo;
+        }
+        public static LinkedList<BitArray> GetAllKey() // доставание всех ключей
+        {
+            return general_pool;
         }
     }
 }
