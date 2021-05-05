@@ -116,7 +116,8 @@ namespace Diplom111
         // сохранение ключей
         private void Save_Click(object sender, EventArgs e)
         {
-            FileWrite.Zapis();
+            FileWrite.ZapisBin();
+            FileWrite.Zapistxt();
         }
     }
 }
