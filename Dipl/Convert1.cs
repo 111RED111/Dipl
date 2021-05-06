@@ -14,9 +14,9 @@ namespace Diplom111
     //Конвертирование аудио в цифры
     class Convert1
     {
-        public static void ProcConvert()
+        public static void ProcConvert(string filename)
         {
-            using (WaveFileReader reader = new WaveFileReader("F:/VSProg/file.wav"))
+            using (WaveFileReader reader = new WaveFileReader(filename))
             {
                // Assert.AreEqual(16, reader.WaveFormat.BitsPerSample, "Only works with 16 bit audio");
                 byte[] buffer = new byte[reader.Length];

@@ -18,9 +18,7 @@ namespace Diplom111
         // WaveIn - поток для записи
         WaveIn waveIn;
         //Класс для записи в файл
-        WaveFileWriter writer;
-        //Имя файла для записи
-        string outputFilename = "F:/VSProg/file.wav";
+        WaveFileWriter writer;        
 
         //Получение данных из входного буфера и обработка полученных с микрофона данных
         void waveIn_DataAvailable(object sender, WaveInEventArgs e)
@@ -33,7 +31,6 @@ namespace Diplom111
             {
                 //Записываем данные из буфера в файл
                 writer.WriteData(e.Buffer, 0, e.BytesRecorded);
-
             }
 
         }
@@ -46,7 +43,7 @@ namespace Diplom111
             waveIn.Dispose();
             waveIn = null;
             writer.Close();
-            writer = null;
+            writer = null;            
         }
 
         //Окончание записи
@@ -66,7 +63,7 @@ namespace Diplom111
         //}
 
         //Начало записи
-        public void StartRecord()
+        public void StartRecord(string filename)
         {
             try
             {
@@ -79,10 +76,10 @@ namespace Diplom111
                 //Прикрепляем обработчик завершения записи
                 //waveIn.RecordingStopped += new EventHandler(waveIn_RecordingStopped);
               //  waveIn.RecordingStopped += waveIn_RecordingStopped;
-                //Формат wav-файла - принимает параметры - частоту дискретизации и количество каналов(здесь mono)
+                //Формат wav-файла - принимает параметры - частоту дискретизации(кол-во значений в секунду) и количество каналов(здесь mono)
                 waveIn.WaveFormat = new WaveFormat(8000, 1);
                 //Инициализируем объект WaveFileWriter
-                writer = new WaveFileWriter(outputFilename, waveIn.WaveFormat);
+                writer = new WaveFileWriter(filename, waveIn.WaveFormat);
                 //Начало записи
                 waveIn.StartRecording();
             }

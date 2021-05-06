@@ -41,11 +41,14 @@ namespace Diplom111
             this.label2 = new System.Windows.Forms.Label();
             this.NujnoKey = new System.Windows.Forms.TextBox();
             this.Save = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // comboBox1
             // 
             this.comboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
             "64",
@@ -121,7 +124,7 @@ namespace Diplom111
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1107, 7);
+            this.label1.Location = new System.Drawing.Point(1115, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(159, 15);
             this.label1.TabIndex = 6;
@@ -170,6 +173,7 @@ namespace Diplom111
             // 
             // Save
             // 
+            this.Save.Enabled = false;
             this.Save.Location = new System.Drawing.Point(646, 28);
             this.Save.Name = "Save";
             this.Save.Size = new System.Drawing.Size(116, 46);
@@ -177,6 +181,10 @@ namespace Diplom111
             this.Save.Text = "Сохранить";
             this.Save.UseVisualStyleBackColor = true;
             this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form1
             // 
@@ -217,6 +225,8 @@ namespace Diplom111
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox NujnoKey;
         private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

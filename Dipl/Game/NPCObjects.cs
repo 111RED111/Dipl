@@ -39,7 +39,7 @@ namespace Diplom111.Game
              //   Hstep = 1;
             //}
 
-            if (kod == 3) // если при погоне, расстояние меньше шага, идёт проверка
+            if (kod == 3) // если при погоне, расстояние меньше шага, идёт проверка (что бы НПС не перескакивал)
             {
                 double targdist = Math.Sqrt(Math.Pow(target.GetCenter().X - center.X, 2) + Math.Pow(target.GetCenter().Y - center.Y, 2)); //targdist дистанция до цели
                 if (targdist < step)
@@ -81,10 +81,10 @@ namespace Diplom111.Game
             //g.FillPie(redBrush, rect, startAngle, sweepAngle); //рисуем сектор обзора
         }
 
-        public bool YouCanSeeMe(GameObjects NPCList)//проверка видит конкретный нпс,  кого-то или нет
+        public bool YouCanSeeMe(GameObjects NPCList) // проверка видит конкретный нпс,  кого-то или нет
         {
-            double d = Math.Sqrt(Math.Pow(NPCList.GetCenter().X - center.X, 2) + Math.Pow(NPCList.GetCenter().Y - center.Y, 2)); //расчёт расстояние между окружностями(объект и обзор) 
-            if (d <= (NPCList.GetRadius() + radobz))//пересечение объекта и обзора
+            double d = Math.Sqrt(Math.Pow(NPCList.GetCenter().X - center.X, 2) + Math.Pow(NPCList.GetCenter().Y - center.Y, 2)); // расчёт расстояние между окружностями(объект и обзор) 
+            if (d <= (NPCList.GetRadius() + radobz)) // пересечение объекта и обзора
             {
                 //double angle = Math.Atan2(NPCList.center.Y - center.Y, NPCList.center.X - center.X);//попадает ли объект в сектор
                 //angle = (angle * 180) / Math.PI;//перевод в градусы
@@ -143,7 +143,7 @@ namespace Diplom111.Game
             //if (bolshe > 1.15)//есть можно, если на 15% меньше
             ///System.Diagnostics.Debug.WriteLine("ubegat");
             ///System.Diagnostics.Debug.WriteLine(Convert.ToString(bolshe));
-            if (bolshe > 1.01)//есть можно, если на 1% меньше
+            if (bolshe > 1.05)//есть можно, если на 5% меньше
             {
                 ///System.Diagnostics.Debug.WriteLine("убегать");
                 return true;
@@ -160,7 +160,7 @@ namespace Diplom111.Game
             //if (bolshe > 1.15)//есть можно, если на 15% меньше
             ///System.Diagnostics.Debug.WriteLine("Estb");
             ///System.Diagnostics.Debug.WriteLine(Convert.ToString(bolshe));
-            if (bolshe > 1.01)//есть можно, если на 1% меньше
+            if (bolshe > 1.05)//есть можно, если на 5% меньше
             {
                /// System.Diagnostics.Debug.WriteLine("можно есть");
                 return true;
