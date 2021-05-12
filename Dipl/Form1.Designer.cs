@@ -43,6 +43,8 @@ namespace Diplom111
             this.Save = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.label3 = new System.Windows.Forms.Label();
+            this.KolvoObj = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -54,10 +56,10 @@ namespace Diplom111
             "64",
             "128",
             "256"});
-            this.comboBox1.Location = new System.Drawing.Point(1130, 24);
+            this.comboBox1.Location = new System.Drawing.Point(1151, 24);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(133, 23);
+            this.comboBox1.Size = new System.Drawing.Size(74, 23);
             this.comboBox1.TabIndex = 0;
             // 
             // StartRecord
@@ -115,7 +117,7 @@ namespace Diplom111
             this.panel1.Location = new System.Drawing.Point(10, 107);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1309, 503);
+            this.panel1.Size = new System.Drawing.Size(1334, 503);
             this.panel1.TabIndex = 5;
             this.panel1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseClick);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
@@ -124,7 +126,7 @@ namespace Diplom111
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1115, 7);
+            this.label1.Location = new System.Drawing.Point(1108, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(159, 15);
             this.label1.TabIndex = 6;
@@ -144,10 +146,12 @@ namespace Diplom111
             // 
             // KolKey
             // 
+            this.KolKey.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.KolKey.AutoSize = true;
-            this.KolKey.Location = new System.Drawing.Point(867, 44);
+            this.KolKey.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.KolKey.Location = new System.Drawing.Point(826, 40);
             this.KolKey.Name = "KolKey";
-            this.KolKey.Size = new System.Drawing.Size(150, 15);
+            this.KolKey.Size = new System.Drawing.Size(198, 20);
             this.KolKey.TabIndex = 8;
             this.KolKey.Text = "Ключей сгенерировано: 0";
             // 
@@ -155,7 +159,7 @@ namespace Diplom111
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1146, 55);
+            this.label2.Location = new System.Drawing.Point(1084, 55);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 15);
             this.label2.TabIndex = 9;
@@ -164,12 +168,13 @@ namespace Diplom111
             // NujnoKey
             // 
             this.NujnoKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.NujnoKey.Location = new System.Drawing.Point(1162, 72);
+            this.NujnoKey.Location = new System.Drawing.Point(1108, 73);
             this.NujnoKey.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NujnoKey.Name = "NujnoKey";
-            this.NujnoKey.Size = new System.Drawing.Size(67, 23);
+            this.NujnoKey.Size = new System.Drawing.Size(47, 23);
             this.NujnoKey.TabIndex = 10;
             this.NujnoKey.Text = "100";
+            this.NujnoKey.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Save
             // 
@@ -182,15 +187,33 @@ namespace Diplom111
             this.Save.UseVisualStyleBackColor = true;
             this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
-            // openFileDialog1
+            // label3
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(1184, 55);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(112, 15);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Количество шаров";
+            // 
+            // KolvoObj
+            // 
+            this.KolvoObj.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.KolvoObj.Location = new System.Drawing.Point(1220, 73);
+            this.KolvoObj.Name = "KolvoObj";
+            this.KolvoObj.Size = new System.Drawing.Size(47, 23);
+            this.KolvoObj.TabIndex = 13;
+            this.KolvoObj.Text = "10";
+            this.KolvoObj.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1330, 619);
+            this.ClientSize = new System.Drawing.Size(1355, 619);
+            this.Controls.Add(this.KolvoObj);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.NujnoKey);
             this.Controls.Add(this.label2);
@@ -227,6 +250,9 @@ namespace Diplom111
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox KolObj;
+        private System.Windows.Forms.TextBox KolvoObj;
     }
 }
 

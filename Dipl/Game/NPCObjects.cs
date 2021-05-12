@@ -25,6 +25,17 @@ namespace Diplom111.Game
             key.AddBitArray(StartPosled); // в ключ записали начальные параметры 
         }
 
+        public NPCListObjects(Size panel_size, GameObjects Player) : base(panel_size) // берём у игрока все параметры и даём нпс
+        {
+            this.center = Player.GetCenter();
+            this.radius = Player.GetRadius();
+            this.color = Player.GetColor();
+            this.step = Player.GetStep();
+            key = new KeyNPC(ClassGame.GetDlinaKey()*10); // создали новый пустой ключ для нпс
+            key.AddBitArray(Player.GetKey().GetKeyArray()); // ключ игрока переделываем в ключ нпс
+            radobz = 5 * radius; //радиус обзора
+        }
+
         //Сдвигаем объект
         public override void MoveObject(Point MousePosition, Size sizepanel, LinkedList<GameObjects>List1)
         {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.IO;
 
 using NAudio.Wave;
 using NAudio.FileFormats;
@@ -16,10 +18,12 @@ namespace Diplom111
     {
         public static void ProcConvert(string filename)
         {
-            using (WaveFileReader reader = new WaveFileReader(filename))
+            //using (WaveFileReader reader = new WaveFileReader(filename))
+            using (BinaryReader reader = new BinaryReader(File.Open(filename, FileMode.Open)))
             {
-               // Assert.AreEqual(16, reader.WaveFormat.BitsPerSample, "Only works with 16 bit audio");
-                byte[] buffer = new byte[reader.Length];
+                MessageBox.Show("Сonverted");
+                // Assert.AreEqual(16, reader.WaveFormat.BitsPerSample, "Only works with 16 bit audio");
+                byte[] buffer = new byte[reader.BaseStream.Length];
                 int read = reader.Read(buffer, 44, buffer.Length-44); //в wav данные с 44 байта
                 //short[] sampleBuffer = new short[read / 2];
                 //Buffer.BlockCopy(buffer, 0, sampleBuffer, 0, read);

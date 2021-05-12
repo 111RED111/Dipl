@@ -38,7 +38,7 @@ namespace Diplom111
         //Завершаем запись
         void StopRecording()
         {
-            MessageBox.Show("StopRecording");
+            MessageBox.Show("Конец записи");
             waveIn.StopRecording();
             waveIn.Dispose();
             waveIn = null;
@@ -67,7 +67,7 @@ namespace Diplom111
         {
             try
             {
-                MessageBox.Show("Start Recording");
+                MessageBox.Show("Начать запись");
                 waveIn = new WaveIn();
                 //Дефолтное устройство для записи (если оно имеется)
                 waveIn.DeviceNumber = 0;

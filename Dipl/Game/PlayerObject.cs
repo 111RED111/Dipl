@@ -17,14 +17,14 @@ namespace Diplom111.Game
 
         }
 
-        public PlayerObject(Size panel_size, GameObjects NPC) : base(panel_size) //берём у нпс все параметры
+        public PlayerObject(Size panel_size, GameObjects NPC) : base(panel_size) //берём у нпс все параметры и даём игроку
         {
             this.center = NPC.GetCenter();
             this.radius = NPC.GetRadius();
             this.color = NPC.GetColor();
             this.step = NPC.GetStep();
             key = new KeyPlayer(ClassGame.GetDlinaKey()); // создали новый пустой ключ для игрока
-            key.AddBitArray(NPC.GetKey().GetKeyArray()); // ключь нпс переделываем в ключ игрока
+            key.AddBitArray(NPC.GetKey().GetKeyArray()); // ключ нпс переделываем в ключ игрока
         }
 
         //Сдвигаем объект

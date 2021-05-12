@@ -18,7 +18,7 @@ namespace Diplom111.Game
         private Panel p;
         private LinkedList<GameObjects> NPCList; //лист с NPCList объектами
         //LinkedList<NPCListObjects> NPCList;
-        private int np = 10; //кол-во нпс
+        private int np; //кол-во нпс
         private int food; //кол-во еды
 
         private Thread GameThread; // игровой поток
@@ -39,8 +39,9 @@ namespace Diplom111.Game
         //    }
         //}
 
-        public ClassGame(Panel p, int DlinaKey, int NujKey) // констркутор игры 
+        public ClassGame(Panel p, int DlinaKey, int NujKey, int KolObj) // констркутор игры 
         {
+            np = KolObj; //кол-во нпс берём из текстбокса
             food = np * 2; //кол-во еды
             this.p = p;//объект, который создаём запоминает p
             ClassGame.DlinaKey = DlinaKey; // сохраняем длину ключа в ClassGame
@@ -122,42 +123,50 @@ namespace Diplom111.Game
         //Выбор объекта, которым будем управлять 
         public void CreatePlayer(Point MousePosition)
         {
-            if (PlayerInList()==false) //проверка не выбран ли уже объект
+            if (PlayerInList() == true) // проверка не выбран ли уже объект
             {
-                //System.Diagnostics.Debug.WriteLine("mouse");
-                //System.Diagnostics.Debug.WriteLine(Convert.ToString(MousePosition.X));
-                //System.Diagnostics.Debug.WriteLine(Convert.ToString(MousePosition.Y));
-
-                double mindist = 10000; //мин расстояние
-                GameObjects podhodNPCList = null;
                 for (int i = 0; i < np; i++)
                 {
-                    if (NPCList.ElementAt(i) == null) //проверка если нпс в списке нул
+                    if (NPCList.ElementAt(i) is PlayerObject) // проаерка типа(PlayerObject) элемента в списке
                     {
-                        continue;
-                    }
-                    Point center = NPCList.ElementAt(i).GetCenter(); //получение координта центра нпс
-                    double dist = Math.Sqrt(Math.Pow(MousePosition.X - center.X, 2) + Math.Pow(MousePosition.Y - center.Y, 2)); //рассчтё расстояния от курсора до объектов
-                    if (mindist > dist) //нахождение ближайшего нпс
-                    {
-                        mindist = dist;
-                        podhodNPCList = NPCList.ElementAt(i);
-                    }
-                    
-                    //System.Diagnostics.Debug.WriteLine("center");
-                    //System.Diagnostics.Debug.WriteLine(Convert.ToString(center.X));
-                    //System.Diagnostics.Debug.WriteLine(Convert.ToString(center.Y));
-                    //System.Diagnostics.Debug.WriteLine("dist");
-                    //System.Diagnostics.Debug.WriteLine(Convert.ToString(dist));
+                        GameObjects NewNPC = new NPCListObjects(p.Size, NPCList.ElementAt(i)); // создание такого же нпс как игрок
 
+                        NPCList.Find(NPCList.ElementAt(i)).Value = NewNPC; // замена игрока на нпс !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    }
+                }
+            }
+            //System.Diagnostics.Debug.WriteLine("mouse");
+            //System.Diagnostics.Debug.WriteLine(Convert.ToString(MousePosition.X));
+            //System.Diagnostics.Debug.WriteLine(Convert.ToString(MousePosition.Y));
+
+            double mindist = 10000; //мин расстояние от мышки до объеккта с которым сравниваем
+            GameObjects podhodNPCList = null;
+            for (int i = 0; i < np; i++)
+            {
+                if (NPCList.ElementAt(i) == null) //проверка если нпс в списке
+                {
+                    continue;
+                }
+                Point center = NPCList.ElementAt(i).GetCenter(); //получение координта центра нпс
+                double dist = Math.Sqrt(Math.Pow(MousePosition.X - center.X, 2) + Math.Pow(MousePosition.Y - center.Y, 2)); //рассчтё расстояния от курсора до объектов
+                if (mindist > dist) //нахождение ближайшего нпс
+                {
+                    mindist = dist;
+                    podhodNPCList = NPCList.ElementAt(i);
                 }
 
-                Player = new PlayerObject(p.Size, podhodNPCList);//создание игрока
-                NPCList.Remove(podhodNPCList); //удаление выбранного нпс
-                NPCList.AddFirst(Player); //добавление игрока (подмена нпс на игрока)
+                //System.Diagnostics.Debug.WriteLine("center");
+                //System.Diagnostics.Debug.WriteLine(Convert.ToString(center.X));
+                //System.Diagnostics.Debug.WriteLine(Convert.ToString(center.Y));
+                //System.Diagnostics.Debug.WriteLine("dist");
+                //System.Diagnostics.Debug.WriteLine(Convert.ToString(dist));
 
             }
-            
+
+            Player = new PlayerObject(p.Size, podhodNPCList);//создание игрока
+            NPCList.Remove(podhodNPCList); //удаление выбранного нпс
+            NPCList.AddFirst(Player); //добавление игрока (подмена нпс на игрока)
+
         }
 
         public PlayerObject GetPlayer() //получить игрока, для исп в другом месте
