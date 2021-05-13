@@ -21,6 +21,8 @@ namespace Diplom111.Game
         private int np; //кол-во нпс
         private int food; //кол-во еды
 
+        private bool newplayer; // знак, что надо создавать нового игрока
+
         private Thread GameThread; // игровой поток
         private bool StopGame; // игра остановлена? 
 
@@ -81,6 +83,10 @@ namespace Diplom111.Game
         {
             while (StopGame == false)
             {
+                if (newplayer == true) // если выбрали нового игрока, его не делают пока выбранный объект не освободится от какого-нибудь действия
+                {
+                    CreatePlayer(MousePosition);
+                }    
                 Graphics g = p.CreateGraphics();//переменная, через которую рисуем
                 g.Clear(Color.White);//обновление панели
                 //Player.MoveObject(MousePosition, p.Size);//движение игрока
@@ -90,8 +96,8 @@ namespace Diplom111.Game
                     if (NPCList.ElementAt(i) != null) // исключ, если нпс = null
                     {
                         //  NPCList.ElementAt(i).Vidno_ne(NPCList);//проверка видно объекту другой объект или нет
-                        NPCList.ElementAt(i).MoveObject(MousePosition, p.Size, NPCList);//движение нпс
                         NPCList.ElementAt(i).DrawObject(g);//отрисовка нпс
+                        NPCList.ElementAt(i).MoveObject(MousePosition, p.Size, NPCList);//движение нпс                        
                     }                  
                 }             
                 Thread.Sleep(60);//скорость игры
@@ -120,9 +126,16 @@ namespace Diplom111.Game
             return false;
         }
 
-        //Выбор объекта, которым будем управлять 
+        //Выбор объекта, которым будем управлять(создание игрока)
         public void CreatePlayer(Point MousePosition)
         {
+            newplayer = false; // что бы не сделать второго игрока
+
+            if (StopGame == true) // если конец игры, дольше нельзя добавлять последовательности
+            {
+                return;
+            }
+
             if (PlayerInList() == true) // проверка не выбран ли уже объект
             {
                 for (int i = 0; i < np; i++)
@@ -168,6 +181,12 @@ namespace Diplom111.Game
             NPCList.AddFirst(Player); //добавление игрока (подмена нпс на игрока)
 
         }
+
+        public void CreatePlayer() // надо сделать нового игрока
+        {
+            newplayer = true; 
+        }
+
 
         public PlayerObject GetPlayer() //получить игрока, для исп в другом месте
         {

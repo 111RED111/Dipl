@@ -35,7 +35,7 @@ namespace Diplom111
         private void StartRecord_Click(object sender, EventArgs e)
         {
             
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK) // выбор куда сохранять
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK) // выбор куда сохранять аудио
             {
                 Record.StartRecord(saveFileDialog1.FileName + ".wav"); // имя файлы
                 StopRecord.Enabled = true; // включение второй кнопки при нажатии первой
@@ -127,7 +127,7 @@ namespace Diplom111
         {
             if (Game != null)
             {
-                Game.CreatePlayer(e.Location);
+                Game.CreatePlayer();
             }                
         }
 
@@ -161,8 +161,13 @@ namespace Diplom111
         // сохранение ключей
         private void Save_Click(object sender, EventArgs e)
         {
-            FileWrite.ZapisBin();
-            FileWrite.Zapistxt();
+            saveFileDialog1.FileName = ""; // очистка поля filename
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK) // выбор куда сохранить вывод
+            {
+                FileWrite.Zapisbin(saveFileDialog1.FileName);                 
+                FileWrite.Zapistxt(saveFileDialog1.FileName);
+            }
+            
         }
     }
 }

@@ -12,9 +12,9 @@ namespace Diplom111
     class FileWrite // вывод ключей в файл
     {
 
-        public static void ZapisBin() // запись в двоичный файл
+        public static void Zapisbin(string file_name) // запись в двоичный файл
         {
-            LinkedList<BitArray> outpool; // пул для вывода
+            LinkedList<BitArray> outpool; // пул для вывода            
 
             outpool = Pool.GetAllKey(); // запись в пул
             int keylen = ClassGame.DlinaKey/8; // длина одного ключа
@@ -23,7 +23,7 @@ namespace Diplom111
             {
                 //Pass the filepath and filename to the StreamWriter Constructor
                 ///StreamWriter sw = new StreamWriter("E:\\111\\Testbin.txt");
-                using (BinaryWriter binWriter = new BinaryWriter(File.Open("E:\\111\\Testbin.txt", FileMode.Create)))
+                using (BinaryWriter binWriter = new BinaryWriter(File.Open(file_name, FileMode.Create))) // сохраняем в двоичном виде
 
                 for (int i = 0; i < outpool.Count; i++) // проход по всему пулу
                 {
@@ -54,7 +54,7 @@ namespace Diplom111
             }
         }
 
-        public static void Zapistxt() // запись в тхт файл
+        public static void Zapistxt(string file_name) // запись в тхт файл
         {
             LinkedList<BitArray> outpool; // пул для вывода
 
@@ -64,7 +64,7 @@ namespace Diplom111
             try
             {
                 //Pass the filepath and filename to the StreamWriter Constructor
-                StreamWriter sw = new StreamWriter("E:\\111\\Testtxt.txt");
+                StreamWriter sw = new StreamWriter(file_name + ".txt");
 
                 for (int i = 0; i < outpool.Count; i++) // проход по всему пулу
                 {

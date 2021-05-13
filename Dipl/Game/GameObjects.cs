@@ -19,6 +19,11 @@ namespace Diplom111.Game
         static protected Random rnd = new Random(); //рандом, для характеристик ЕСЛИ ЧТО МОЖНО ЗАМЕНИТЬ РАНДОМ НА ЗВУК!!!!!!!!!!!!
         protected int step; //шаг шара
 
+        protected static int maxrad = 100; // макс радиус
+        protected static int minrad = 10; // мин радиус
+        protected static int maxspeed = 300; // максимальная скорость
+        protected static int del = 10; // деление скорости
+
         protected Key key; // послеодовательность объекта
         protected BitArray StartPosled; // стартовая последовательность, из которой берём параметры
 
@@ -34,12 +39,12 @@ namespace Diplom111.Game
 
             radius = byteparam[0]/4; //размер 10-64 пикселей
 
-            if (radius < 10) //если размер из массива пришёл меньше 10, делать объект равным 10
+            if (radius < minrad) //если размер из массива пришёл меньше 10, делать объект равным 10
             {
-                radius = 10;
+                radius = minrad;
             }
 
-            step = 80 - radius; //скорость движения
+            step = (maxspeed - radius)/del; //скорость движения
                         
             color = Color.FromArgb(byteparam[1], byteparam[2], byteparam[3]); // цвет объектов
         }
@@ -96,26 +101,43 @@ namespace Diplom111.Game
 
         protected void KillObj(LinkedList<GameObjects> List1, GameObjects target) //съедание
         {
-            if (target != null) //проверка, что кто-то выбран для съедания
+            for (int i = 0; i < List1.Count; i++)
             {
-                if (radius > target.radius) //проерка кто больше
+                if (List1.ElementAt(i) == null) // если кого-то съели пропускаем его(не высчитываем расстояние)
                 {
-                    double dist = Math.Sqrt(Math.Pow(center.X - target.GetCenter().X, 2) + Math.Pow(center.Y - target.GetCenter().Y, 2)); //момент съедания(центр круга еды в круге охотника)
-                    if (dist < radius) //проверка ^
+                    continue;
+                }
+                //if (target != null) // проверка, что кто-то выбран для съедания
+                //{
+                    if (radius > List1.ElementAt(i).radius) // проерка кто больше
                     {
-                        for (int i = 0; i < List1.Count; i++) //удалить кого съели
+                        double dist = Math.Sqrt(Math.Pow(center.X - List1.ElementAt(i).GetCenter().X, 2) + Math.Pow(center.Y - List1.ElementAt(i).GetCenter().Y, 2)); // момент съедания(центр круга еды в круге охотника)
+                        if (dist < radius) // проверка ^
                         {
-                            if (List1.ElementAt(i) == target)
+                            //for (int i = 0; i < List1.Count; i++) // удалить кого съели
+                            //{
+                                //if (List1.ElementAt(i) == target)
+                                //{
+                                    
+                            key.AddBitArray(List1.ElementAt(i).GetKey().GetKeyArray()); // тот, кто съедает кого-то получает его последовательность
+                            IncRad(List1.ElementAt(i)); // вызов увеличения
+                            List1.Find(List1.ElementAt(i)).Value = null; // удалить из списка, кого съели
+                            
+                            if (radius > maxrad*0.9) // удаление объекта после набора 90% от максимального радиуса
                             {
-                                List1.Find(target).Value = null; // удалить из списка, кого съели
-                                key.AddBitArray(target.GetKey().GetKeyArray()); // тот, кто съедает кого-то получает его последовательность
-                                IncRad(target); // вызов увеличения
-                                break;
+                                int smert = rnd.Next(0, 100); // с 95% что выживет, когда кого-то съедает
+                                if (smert > 95)
+                                {
+                                    List1.Find(this).Value = null;
+                                }
                             }
+                                    //break;
+                                //}
+                            //}
                         }
                     }
-                }
-            }
+                //}
+            }            
         }
 
         public Key GetKey() // получить ключ
@@ -123,14 +145,14 @@ namespace Diplom111.Game
             return key;
         }
 
-        public virtual void IncRad(GameObjects target) //увеличение размеров объекта и скорости
+        public virtual void IncRad(GameObjects target) // изменение размеров объекта и скорости
         {
             radius = radius + (target.radius) / 5; //увеличение радиуса на (радиус цели / 5 )
-            if (radius > 64) //радиус не может быть больше 64
+            if (radius > maxrad) //радиус не может быть больше 64
             {
-                radius = 64;
+                radius = maxrad;
             }
-            step = 80 - radius;
+            step = (maxspeed - radius)/del;
             
         }
     }
