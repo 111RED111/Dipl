@@ -103,6 +103,7 @@ namespace Diplom111
                 StartGame.Enabled = false;
                 StopGame.Enabled = true;
                 Save.Enabled = false;
+                StartRecord.Enabled = false;
                 comboBox1.Enabled = false;
                 NujnoKey.Enabled = false;
                 KolvoObj.Enabled = false;                                
@@ -153,6 +154,7 @@ namespace Diplom111
             StartGame.Enabled = true;
             StopGame.Enabled = false;
             Save.Enabled = true;
+            StartRecord.Enabled = true;
             comboBox1.Enabled = true;
             NujnoKey.Enabled = true;
             KolvoObj.Enabled = true;

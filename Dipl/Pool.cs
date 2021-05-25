@@ -29,9 +29,9 @@ namespace Diplom111
 
                 byte[] byteposled = new byte[ClassGame.DlinaKey/8]; // массив байт, для переделывания из массива битов в массив байтов, для всех параметров (byteposled ключ в виде байтов)
                 key.CopyTo(byteposled, 0); // заполнение массива
-                System.Diagnostics.Debug.WriteLine(" ");
-                System.Diagnostics.Debug.WriteLine("вывод key");
-                System.Diagnostics.Debug.WriteLine(Encoding.ASCII.GetString(byteposled));
+                //System.Diagnostics.Debug.WriteLine(" ");
+                //System.Diagnostics.Debug.WriteLine("вывод key");
+                //System.Diagnostics.Debug.WriteLine(Encoding.ASCII.GetString(byteposled));
             }  
             
             if (kol != null) // вывод кол-ва ключей

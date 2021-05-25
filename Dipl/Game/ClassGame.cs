@@ -13,9 +13,9 @@ namespace Diplom111.Game
     class ClassGame 
     {
         private PlayerObject Player;
-        private Point MousePosition;
+        private Point MousePosition; 
         //Graphics g;
-        private Panel p;
+        private Panel p; // для работы с панелью 
         private LinkedList<GameObjects> NPCList; //лист с NPCList объектами
         //LinkedList<NPCListObjects> NPCList;
         private int np; //кол-во нпс
@@ -53,12 +53,12 @@ namespace Diplom111.Game
             //NPCList = new LinkedList<NPCListObjects>();
             for (int i = 0; i < np; i++)
             {
-                NPCList.AddLast(new NPCListObjects(p.Size));//создание нпс
+                NPCList.AddLast(new NPCListObjects(p.Size));// создание нпс
             }
 
             for (int i = 0; i < food; i++)
             {
-                NPCList.AddLast(new Food(p.Size));//создание нпс
+                NPCList.AddLast(new Food(p.Size)); // создание еды
             }
         }
 
@@ -86,11 +86,17 @@ namespace Diplom111.Game
                 if (newplayer == true) // если выбрали нового игрока, его не делают пока выбранный объект не освободится от какого-нибудь действия
                 {
                     CreatePlayer(MousePosition);
-                }    
-                Graphics g = p.CreateGraphics();//переменная, через которую рисуем
+                }
+
+                Bitmap bm = new Bitmap(p.Width,p.Height); // рисуем пустую картинку через битмап, размером с панель
+                Graphics g = Graphics.FromImage(bm); // переменная, через которую рисуем на картинке
+                
+                //Graphics g = p.CreateGraphics();//переменная, через которую рисуем
                 g.Clear(Color.White);//обновление панели
+
                 //Player.MoveObject(MousePosition, p.Size);//движение игрока
                 //Player.DrawObject(g);//отрисовка игрока
+
                 for (int i = 0; i < NPCList.Count; i++)
                 {
                     if (NPCList.ElementAt(i) != null) // исключ, если нпс = null
@@ -99,8 +105,26 @@ namespace Diplom111.Game
                         NPCList.ElementAt(i).DrawObject(g);//отрисовка нпс
                         NPCList.ElementAt(i).MoveObject(MousePosition, p.Size, NPCList);//движение нпс                        
                     }                  
-                }             
-                Thread.Sleep(60);//скорость игры
+                }
+
+                //Bitmap bmp = (Bitmap)p.BackgroundImage;
+                //if (bmp == null)
+                //{
+                //    p.BackgroundImage = new Bitmap(p.Width, p.Height);
+                //    bmp = (Bitmap)p.BackgroundImage;
+                //}
+
+                g = p.CreateGraphics(); //переменная, через которую рисуем
+                g.DrawImage(bm, 0, 0);
+
+                /*for (int i = 0; i < p.Width; i++)
+                    for (int j = 0; j < p.Height; j++)
+                {
+                    bmp.SetPixel(i, j, bm.GetPixel(i, j));                    
+                }*/
+
+
+                Thread.Sleep(5);//скорость игры
                 AddObj(); //вызов добавления 
 
                 if (Pool.GetKolKey() >= Math.Min(NujKey, 2000)) // выход по достиижению нужного кол-ва ключей (либо 2000, либо что указано в текстбоксе)
@@ -109,6 +133,7 @@ namespace Diplom111.Game
                 }
             }
         }
+
 
         private bool PlayerInList() //проверка, есть ли игрок в списке
         {

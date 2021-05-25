@@ -104,7 +104,7 @@ namespace Diplom111
             this.StartGame.Name = "StartGame";
             this.StartGame.Size = new System.Drawing.Size(122, 46);
             this.StartGame.TabIndex = 4;
-            this.StartGame.Text = "Запуск игры";
+            this.StartGame.Text = "Запуск генерации";
             this.StartGame.UseVisualStyleBackColor = true;
             this.StartGame.Click += new System.EventHandler(this.StartGame_Click);
             // 
@@ -140,7 +140,7 @@ namespace Diplom111
             this.StopGame.Name = "StopGame";
             this.StopGame.Size = new System.Drawing.Size(116, 46);
             this.StopGame.TabIndex = 7;
-            this.StopGame.Text = "Конец игры";
+            this.StopGame.Text = "Конец генерации";
             this.StopGame.UseVisualStyleBackColor = true;
             this.StopGame.Click += new System.EventHandler(this.StopGame_Click);
             // 

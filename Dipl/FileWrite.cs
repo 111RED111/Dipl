@@ -27,19 +27,19 @@ namespace Diplom111
 
                 for (int i = 0; i < outpool.Count; i++) // проход по всему пулу
                 {
-                    BitArray poolelemet = outpool.ElementAt(i);  // достаём один ключ (poolelemet один ключ)
+                    BitArray poolelement = outpool.ElementAt(i);  // достаём один ключ (poolelement один ключ)
                     byte[] byteposled = new byte[keylen]; // массив байт, для переделывания из массива битов в массив байтов, для всех параметров (byteposled ключ в виде байтов)
-                    poolelemet.CopyTo(byteposled, 0); // заполнение массива
+                    poolelement.CopyTo(byteposled, 0); // заполнение массива
 
                     ///sw.WriteLine(Encoding.ASCII.GetString(byteposled)); // запись байтов в виде строки
                     binWriter.Write(byteposled);
-                    System.Diagnostics.Debug.WriteLine(" ");
-                    System.Diagnostics.Debug.WriteLine("вывод");
-                    System.Diagnostics.Debug.WriteLine(byteposled);
-                    System.Diagnostics.Debug.WriteLine("вывод ASCII");
-                    System.Diagnostics.Debug.WriteLine(Encoding.ASCII.GetString(byteposled));
-                    System.Diagnostics.Debug.WriteLine("вывод UTF8");
-                    System.Diagnostics.Debug.WriteLine(Encoding.UTF8.GetString(byteposled));
+                    //System.Diagnostics.Debug.WriteLine(" ");
+                    //System.Diagnostics.Debug.WriteLine("вывод");
+                    //System.Diagnostics.Debug.WriteLine(byteposled);
+                    //System.Diagnostics.Debug.WriteLine("вывод ASCII");
+                    //System.Diagnostics.Debug.WriteLine(Encoding.ASCII.GetString(byteposled));
+                    //System.Diagnostics.Debug.WriteLine("вывод UTF8");
+                    //System.Diagnostics.Debug.WriteLine(Encoding.UTF8.GetString(byteposled));
                 }
 
                 ///sw.Close();
@@ -68,16 +68,16 @@ namespace Diplom111
 
                 for (int i = 0; i < outpool.Count; i++) // проход по всему пулу
                 {
-                    BitArray poolelemet = outpool.ElementAt(i);  // достаём один ключ (poolelemet один ключ)
+                    BitArray poolelement = outpool.ElementAt(i);  // достаём один ключ (poolelement один ключ)
                     byte[] byteposled = new byte[keylen]; // массив байт, для переделывания из массива битов в массив байтов, для всех параметров (byteposled ключ в виде байтов)
-                    poolelemet.CopyTo(byteposled, 0); // заполнение массива
+                    poolelement.CopyTo(byteposled, 0); // заполнение массива
 
                     string hex = BitConverter.ToString(byteposled).Replace("-", string.Empty); // перевод в 16-ичный вид
 
                     sw.WriteLine(hex); // запись байтов в виде строки
-                    System.Diagnostics.Debug.WriteLine(" ");
-                    System.Diagnostics.Debug.WriteLine("вывод 16");
-                    System.Diagnostics.Debug.WriteLine(hex);
+                    //System.Diagnostics.Debug.WriteLine(" ");
+                    //System.Diagnostics.Debug.WriteLine("вывод 16");
+                    //System.Diagnostics.Debug.WriteLine(hex);
                 }
 
                 sw.Close();
