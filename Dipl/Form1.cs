@@ -62,6 +62,7 @@ namespace Diplom111
                 Convert1.ProcConvert(openFileDialog1.FileName);
                 StartGame.Enabled = true;
                 Convert.Enabled = false;
+                Save.Enabled = false;
             }
         }
 
@@ -170,6 +171,11 @@ namespace Diplom111
                 FileWrite.Zapistxt(saveFileDialog1.FileName);
             }
             
+        }
+
+        private void hScrollBar1_ValueChanged(object sender, EventArgs e) //запись нового значения скорости
+        {
+            ClassGame.gamespeed = hScrollBar1.Maximum-hScrollBar1.Value+hScrollBar1.Minimum;      
         }
     }
 }

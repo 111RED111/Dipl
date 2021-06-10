@@ -20,6 +20,7 @@ namespace Diplom111.Game
         //LinkedList<NPCListObjects> NPCList;
         private int np; //кол-во нпс
         private int food; //кол-во еды
+        public static int gamespeed = 10; //скорость игры
 
         private bool newplayer; // знак, что надо создавать нового игрока
 
@@ -97,12 +98,13 @@ namespace Diplom111.Game
                 //Player.MoveObject(MousePosition, p.Size);//движение игрока
                 //Player.DrawObject(g);//отрисовка игрока
 
-                for (int i = 0; i < NPCList.Count; i++)
+                for (int i = 0; i < NPCList.Count; i++) // перебор всех объектов, для сдвига и отрисовки
                 {
-                    if (NPCList.ElementAt(i) != null) // исключ, если нпс = null
+                    //if (NPCList.ElementAt(i) != null) 
+                    if (NPCList.ElementAt(i).Del_Mark() != true) // проверка, что объект есть (мб его съели, а с ним идёт взаимодействие) исключ, если нпс = null(delete=false)
                     {
                         //  NPCList.ElementAt(i).Vidno_ne(NPCList);//проверка видно объекту другой объект или нет
-                        NPCList.ElementAt(i).DrawObject(g);//отрисовка нпс
+                        NPCList.ElementAt(i).DrawObject(g); //отрисовка нпс
                         NPCList.ElementAt(i).MoveObject(MousePosition, p.Size, NPCList);//движение нпс                        
                     }                  
                 }
@@ -124,7 +126,7 @@ namespace Diplom111.Game
                 }*/
 
 
-                Thread.Sleep(5);//скорость игры
+                Thread.Sleep(gamespeed);//скорость игры
                 AddObj(); //вызов добавления 
 
                 if (Pool.GetKolKey() >= Math.Min(NujKey, 2000)) // выход по достиижению нужного кол-ва ключей (либо 2000, либо что указано в текстбоксе)
@@ -139,7 +141,8 @@ namespace Diplom111.Game
         {
             for (int i = 0; i < np; i++)
             {
-                if (NPCList.ElementAt(i) == null) //проверка если нпс в списке нул
+                //if (NPCList.ElementAt(i) == null) 
+                if (NPCList.ElementAt(i).Del_Mark() == true) //проверка если нпс в списке нул
                 {
                     continue;
                 }
@@ -181,7 +184,8 @@ namespace Diplom111.Game
             GameObjects podhodNPCList = null;
             for (int i = 0; i < np; i++)
             {
-                if (NPCList.ElementAt(i) == null) //проверка если нпс в списке
+                //if (NPCList.ElementAt(i) == null) 
+                if (NPCList.ElementAt(i).Del_Mark() == true) //проверка если нпс в списке
                 {
                     continue;
                 }
@@ -222,17 +226,21 @@ namespace Diplom111.Game
         {
             for (int i = 0; i < np; i++)
             {
-                if (NPCList.ElementAt(i) == null) //проверка если нпс в списке нул(кого-то съели)
+                //if (NPCList.ElementAt(i) == null) 
+                if (NPCList.ElementAt(i).Del_Mark() == true) //проверка если нпс в списке нул(кого-то съели)
                 {
-                    NPCList.Find(null).Value = new NPCListObjects(p.Size); //создание нпс, вместо съеденных
+                    //NPCList.Find(null).Value = new NPCListObjects(p.Size);
+                    NPCList.Find(NPCList.ElementAt(i)).Value = new NPCListObjects(p.Size); //создание нпс, вместо съеденных
                 }
             }
 
             for (int i = np; i < np+food; i++)
             {
-                if (NPCList.ElementAt(i) == null) //проверка если еда в списке нул(кого-то съели)
+                //if (NPCList.ElementAt(i) == null) 
+                if (NPCList.ElementAt(i).Del_Mark() == true) //проверка если еда в списке нул(кого-то съели)
                 {
-                    NPCList.Find(null).Value = new Food(p.Size); //создание еды, вместо съеденных
+                    //NPCList.Find(null).Value = new Food(p.Size);
+                    NPCList.Find(NPCList.ElementAt(i)).Value = new Food(p.Size); //создание еды, вместо съеденных
                 }
             }
         }

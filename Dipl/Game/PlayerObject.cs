@@ -28,7 +28,7 @@ namespace Diplom111.Game
         }
 
         //Сдвигаем объект
-        public override void MoveObject(Point MousePosition, Size sizepanel, LinkedList<GameObjects> List1)
+        public override void MoveObject(Point MousePosition, Size sizepanel, LinkedList<GameObjects> List1) // List1 список игровых объектов
         {
 
 
@@ -50,7 +50,8 @@ namespace Diplom111.Game
             for (int i = 0; i < List1.Count; i++)
             {
                 GameObjects NPCList_obj = List1.ElementAt(i);//перебор всех нпс
-                if (NPCList_obj == null)
+                //if (NPCList_obj == null)
+                if (NPCList_obj.Del_Mark() == true) //если съели не проверяем эл
                 {
                     continue;
                 }

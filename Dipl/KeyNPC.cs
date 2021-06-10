@@ -15,7 +15,7 @@ namespace Diplom111
 
         public override void AddBitArray(BitArray addkey) // Добавляем биты в последовательность
         {
-            for (int i = 0; i < addkey.Length; i++)
+            for (int i = 0; i < addkey.Length; i++) // заполнение ключа до полного (перебираются биты)
             {
                 if (index >= key.Length) // если в нпс больше не помещается последовательность
                 {

@@ -45,6 +45,8 @@ namespace Diplom111
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.label3 = new System.Windows.Forms.Label();
             this.KolvoObj = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.SuspendLayout();
             // 
             // comboBox1
@@ -56,7 +58,7 @@ namespace Diplom111
             "64",
             "128",
             "256"});
-            this.comboBox1.Location = new System.Drawing.Point(1151, 24);
+            this.comboBox1.Location = new System.Drawing.Point(1153, 24);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(74, 23);
@@ -116,6 +118,7 @@ namespace Diplom111
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Location = new System.Drawing.Point(10, 107);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.MinimumSize = new System.Drawing.Size(1330, 500);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1334, 503);
             this.panel1.TabIndex = 5;
@@ -126,7 +129,7 @@ namespace Diplom111
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1108, 7);
+            this.label1.Location = new System.Drawing.Point(1110, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(159, 15);
             this.label1.TabIndex = 6;
@@ -149,7 +152,7 @@ namespace Diplom111
             this.KolKey.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.KolKey.AutoSize = true;
             this.KolKey.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.KolKey.Location = new System.Drawing.Point(826, 40);
+            this.KolKey.Location = new System.Drawing.Point(823, 72);
             this.KolKey.Name = "KolKey";
             this.KolKey.Size = new System.Drawing.Size(198, 20);
             this.KolKey.TabIndex = 8;
@@ -193,25 +196,46 @@ namespace Diplom111
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(1184, 55);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(112, 15);
+            this.label3.Size = new System.Drawing.Size(126, 15);
             this.label3.TabIndex = 12;
-            this.label3.Text = "Количество шаров";
+            this.label3.Text = "Количество объектов";
             // 
             // KolvoObj
             // 
             this.KolvoObj.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.KolvoObj.Location = new System.Drawing.Point(1220, 73);
+            this.KolvoObj.Location = new System.Drawing.Point(1230, 73);
             this.KolvoObj.Name = "KolvoObj";
             this.KolvoObj.Size = new System.Drawing.Size(47, 23);
             this.KolvoObj.TabIndex = 13;
             this.KolvoObj.Text = "10";
             this.KolvoObj.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(862, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(113, 15);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Скорость объектов";
+            // 
+            // hScrollBar1
+            // 
+            this.hScrollBar1.Location = new System.Drawing.Point(851, 30);
+            this.hScrollBar1.Minimum = 5;
+            this.hScrollBar1.Name = "hScrollBar1";
+            this.hScrollBar1.Size = new System.Drawing.Size(136, 17);
+            this.hScrollBar1.TabIndex = 15;
+            this.hScrollBar1.Value = 100;
+            this.hScrollBar1.ValueChanged += new System.EventHandler(this.hScrollBar1_ValueChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1355, 619);
+            this.Controls.Add(this.hScrollBar1);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.KolvoObj);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Save);
@@ -228,6 +252,7 @@ namespace Diplom111
             this.Controls.Add(this.comboBox1);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
+            this.Text = "Generator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -253,6 +278,8 @@ namespace Diplom111
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox KolObj;
         private System.Windows.Forms.TextBox KolvoObj;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.HScrollBar hScrollBar1;
     }
 }
 

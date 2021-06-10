@@ -19,6 +19,8 @@ namespace Diplom111.Game
         static protected Random rnd = new Random(); //рандом, для характеристик ЕСЛИ ЧТО МОЖНО ЗАМЕНИТЬ РАНДОМ НА ЗВУК!!!!!!!!!!!!
         protected int step; //шаг шара
 
+        bool delete = false; // помечает тех, кого надо удалить
+
         protected static int maxrad = 100; // макс радиус
         protected static int minrad = 10; // мин радиус
         protected static int maxspeed = 300; // максимальная скорость
@@ -103,13 +105,14 @@ namespace Diplom111.Game
         {
             for (int i = 0; i < List1.Count; i++)
             {
-                if (List1.ElementAt(i) == null) // если кого-то съели пропускаем его(не высчитываем расстояние)
+                // if (List1.ElementAt(i) == null) // если кого-то съели пропускаем его(не высчитываем расстояние)
+                if(List1.ElementAt(i).delete == true) // если кого-то съели пропускаем его(не высчитываем расстояние)
                 {
                     continue;
                 }
                 //if (target != null) // проверка, что кто-то выбран для съедания
                 //{
-                    if (radius > List1.ElementAt(i).radius) // проерка кто больше
+                    if (radius > List1.ElementAt(i).radius) // проверка кто больше
                     {
                         double dist = Math.Sqrt(Math.Pow(center.X - List1.ElementAt(i).GetCenter().X, 2) + Math.Pow(center.Y - List1.ElementAt(i).GetCenter().Y, 2)); // момент съедания(центр круга еды в круге охотника)
                         if (dist < radius) // проверка ^
@@ -121,20 +124,24 @@ namespace Diplom111.Game
                                     
                             key.AddBitArray(List1.ElementAt(i).GetKey().GetKeyArray()); // тот, кто съедает кого-то получает его последовательность
                             IncRad(List1.ElementAt(i)); // вызов увеличения
-                            List1.Find(List1.ElementAt(i)).Value = null; // удалить из списка, кого съели
+                                                        //List1.Find(List1.ElementAt(i)).Value = null; // удалить из списка, кого съели
                             
+                            List1.ElementAt(i).delete = true; // метка, что этот элемент надо удалить
+
                             if (radius > maxrad*0.9) // удаление объекта после набора 90% от максимального радиуса
                             {
                                 int smert = rnd.Next(0, 100); // с 95% что выживет, когда кого-то съедает
                                 if (smert > 95)
                                 {
-                                    List1.Find(this).Value = null;
+                                    //List1.Find(this).Value = null;
+                                    delete = true; // пометили, что надо удалить
                                 }
                             }
-                                    //break;
-                                //}
-                            //}
-                        }
+                        //break;
+                        //}
+                        //}
+                       // List1.Find(List1.ElementAt(i)).Value = null; // удалить из списка, кого съели
+                    }
                     }
                 //}
             }            
@@ -154,6 +161,11 @@ namespace Diplom111.Game
             }
             step = (maxspeed - radius)/del;
             
+        }
+
+        public bool Del_Mark() // возвращение метки, тех кого надо удалить
+        {
+            return delete;
         }
     }
 }

@@ -113,7 +113,8 @@ namespace Diplom111.Game
             for (int i=0; i<List1.Count; i++)
             {
                 GameObjects NPCList_obj = List1.ElementAt(i);//перебор всех нпс
-                if (NPCList_obj == null)
+                //if (NPCList_obj == null)
+                if (NPCList_obj.Del_Mark() == true) //если съели, не проверяем элемент
                 {
                     continue;
                 }
@@ -183,7 +184,7 @@ namespace Diplom111.Game
         }
 
         private int KudaMove(Size sizepanel) //куда двигается (направление движения) 
-            // 1)контроль границ, 2)убегание, 3)погоня, 4)рандомное движение
+            // приоритет 1)контроль границ, 2)убегание, 3)погоня, 4)рандомное движение
         {
             bool granb = MoveGranici(sizepanel); // контроль границ
             if (granb == false)
@@ -250,7 +251,7 @@ namespace Diplom111.Game
         {
             if (WhoEat.Count > 0)
             {
-                angle_rad = Math.Atan2(center.Y - WhoEat.ElementAt(0).GetCenter().Y, WhoEat.ElementAt(0).GetCenter().X - center.X)-Math.PI; // движение в сторону цели
+                angle_rad = Math.Atan2(center.Y - WhoEat.ElementAt(0).GetCenter().Y, WhoEat.ElementAt(0).GetCenter().X - center.X)-Math.PI; // движение от цели
                 Hstep = 5;
                 ///System.Diagnostics.Debug.WriteLine("Убэгаiм");
                 ///System.Diagnostics.Debug.WriteLine(angle_rad);

@@ -13,6 +13,10 @@ namespace Diplom111.Game
 
         public Food(Size panel_size) : base(panel_size)
         {
+            StartPosled = Posled.GetPosled(8); // зарезервировали место под послед в еду
+            byte[] byteparam = new byte[1]; // массив байт, для переделывания из массива битов в массив байтов, для всех параметров
+            StartPosled.CopyTo(byteparam, 0); // заполнение массива
+
             color = Color.Black; //характеристики еды
             radius = 5;
             key = new KeyNPC(ClassGame.GetDlinaKey()); // создали новый пустой ключ для еды
